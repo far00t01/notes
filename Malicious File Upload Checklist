@@ -1,7 +1,6 @@
 # Malicious File Upload Checklist
 
 ## Checklist
-
 - [ ]  { Try various file extensions } : Try different versions of the file extensions, for example php3, .php4, .php5, phtml for PHP scripts, asp,aspx and ashx for IIS
 **Extension Links** ➖ https://github.com/danielmiessler/SecLists
 
@@ -57,22 +56,18 @@ Try Whatever you can to make application vulnerable :-
 - { by Path traversing }If not able upload any server site scripting file try to replace website logo like  ../../../logo.png
 
 ### Twitter Threads
-
 https://www.notion.so/File-Upload-Thread-ade6eaeac7c5453ab2d5b3543e807adf
 
 ## Tools
 
 ### 1. exiftool
-
 **ExifTool**, used for reading and writing meta information in a variety of file types
 
 
 ****Conclusion****
-
 File upload vulnerabilities are very common when conducting a penetration test against web applications, knowing how to bypass file restrictions is key as these will often result in a full system compromise.
 
 # **Sources & Additional Resources**
-
 https://portswigger.net/web-security/file-upload
 https://youtu.be/CmF9sEyKZNo
 https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload
